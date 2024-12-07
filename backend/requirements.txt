@@ -1,0 +1,13 @@
+waitress
+flask
+python-dotenv
+gpt4all
+nomic
+faiss-cpu
+docx
+pdfplumber
+python-docx
+tqdm
+uuid
+pandas
+pyinstaller
