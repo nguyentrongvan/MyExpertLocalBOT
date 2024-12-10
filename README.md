@@ -15,7 +15,13 @@
 - **Fast and Efficient**: Works seamlessly on CPU or GPU.
 - **Optimized for GPU**: Tested with NVIDIA 2080 Ti for maximum efficiency.
 
----
+### Notes:  
+Current version only support for `.pdf`, `.doc` and `.docx` files.
+
+### References:
+[1]. https://github.com/nomic-ai/gpt4all  
+[2]. https://github.com/facebookresearch/faiss  
+[3]. https://pypi.org/project/light-embed  
 
 ## Environment Setup
 
