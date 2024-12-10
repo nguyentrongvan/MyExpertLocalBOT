@@ -1,12 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
+﻿using ChatbotGUI.Commands;
+using ChatbotGUI.Services;
+using System;
+using System.Diagnostics;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Threading;
 using System.Windows.Forms;
+using System.IO;
+
 
 namespace ChatbotGUI
 {
@@ -18,6 +18,7 @@ namespace ChatbotGUI
         }
         private CreateBotview botView = null;
         private ConversationView conversationView = null;
+        private PictureBox loadingStartPictureBox;
 
         private void main_panel_Paint(object sender, PaintEventArgs e)
         {
@@ -40,8 +41,9 @@ namespace ChatbotGUI
             conversationView.ShowDialog();
         }
 
-        private void quit_btn_Click(object sender, EventArgs e)
+        private async void quit_btn_Click(object sender, EventArgs e)
         {
+            await ApiService.CloseBOTServer();
             if (this.botView != null)
             {
                 this.botView.Close();
@@ -68,6 +70,58 @@ namespace ChatbotGUI
         private void MainView_Load(object sender, EventArgs e)
         {
             this.TopMost = false;
+            GlobalVaribales.config = new ConfigReader("AppConfig.ini");
+            this.FormBorderStyle = FormBorderStyle.None;
+            this.MaximizeBox = false;
+            this.SizeGripStyle = SizeGripStyle.Hide;
+            LaunchBOTServer();
+        }
+
+        private async void LaunchBOTServer()
+        {
+            ShowLoading();
+            bool serverReady = false;
+
+            while (!serverReady) {
+                Thread.Sleep(1000);
+                serverReady = await ApiService.HeathCheck();
+            }
+            HideLoading();
+        }
+
+        private void ShowLoading()
+        {
+            if (loadingStartPictureBox == null)
+            {
+                loadingStartPictureBox = new PictureBox
+                {
+                    Size = this.ClientSize,
+                    BackColor = Color.FromArgb(128, 0, 0, 0),
+                    Location = new Point(0, 0),
+                    Dock = DockStyle.Fill,
+                    SizeMode = PictureBoxSizeMode.CenterImage,
+                    Image = Image.FromFile("Resources/starting.gif"),
+                    Visible = false
+                };
+
+                this.Controls.Add(loadingStartPictureBox);
+            }
+
+            loadingStartPictureBox.BringToFront();
+            loadingStartPictureBox.Visible = true;
+        }
+
+        private void HideLoading()
+        {
+            if (loadingStartPictureBox != null)
+            {
+                loadingStartPictureBox.Visible = false;
+            }
+        }
+
+        private void label1_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

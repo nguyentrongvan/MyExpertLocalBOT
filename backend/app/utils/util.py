@@ -2,19 +2,9 @@ import os
 import threading
 import pandas as pd
 import numpy as np
-from nomic import embed
 from datetime import datetime
 from settings import MEDIA_DIR,MEDIA_DIR_BOT
 from app.models.bot.bot import Bot
-
-
-def get_embedding(text_content):
-    '''
-    Get embedding for given text list
-    Return list of embeddings
-    '''
-    embeddings = embed.text(text_content, inference_mode="local")['embeddings']
-    return embeddings
 
 
 def convert_table_to_text(table):

@@ -1,13 +1,13 @@
+import os
+
 class LocalChatbot:
-    def __init__(self, model_name='gpt4all_falcon', device = 'intel', max_token=1024):
+    def __init__(self, model_path='gpt4all_falcon', max_token=1024, device='cpu'):
         from settings import MODELS_MAP
         from gpt4all import GPT4All
 
-        self.model_name = model_name
-        self.model_id = MODELS_MAP[model_name]
-        self.device = device
-        self.model = GPT4All(self.model_id, device='gpu')
-        self.max_token = max_token
+        self.model_name = os.path.basename(model_path)
+        self.max_token = int(max_token)
+        self.model = GPT4All(model_name=self.model_name, model_path=model_path, allow_download=False, device=device)
 
 
 

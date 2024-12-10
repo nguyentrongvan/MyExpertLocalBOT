@@ -21,10 +21,11 @@ API_LOGGER = get_logger(log_path=LOG_PATH, filename=API_APP_NAME, module_name=AP
 
 
 ### Setting for models
-MAX_TOKEN = 1024
-DEVICE = 'cpu' # 'gpu', 'amd'
+MAX_TOKEN = os.environ.get('MAX_TOKEN')
+DEVICE = os.environ.get('DEVICE')
 MODEL_NAME = os.environ.get('MODEL_NAME')
-CHATBOT = LocalChatbot(model_name=MODEL_NAME, max_token=MAX_TOKEN, device=DEVICE)
+DEFAULT_MODEL = os.path.abspath('modelzoo/qwen2-1_5b')
+CHATBOT = LocalChatbot(DEFAULT_MODEL, MAX_TOKEN, DEVICE)
 MAX_EMBEDD_DIM = 1024
 DEFAULT_PROMPT = "Using Vietnamese in your conversation. "\
                  "I want you to act as a document that I am having a conversation with. Your name is 'AI Assistant'. You will " \

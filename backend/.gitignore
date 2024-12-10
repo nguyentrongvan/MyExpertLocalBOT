@@ -9,6 +9,7 @@ build
 **/output
 **/result
 **/data
+modelzoo
 
 *.log
 *.sqlite

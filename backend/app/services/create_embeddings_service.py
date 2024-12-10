@@ -1,5 +1,5 @@
 from tqdm import tqdm
-from app.utils.util import get_embedding
+from app.models.embeddings.text_light_embed import LightTextEmbedding
 from app.services.get_text_service import get_text_from_document
 
 def create_text_embeddings(list_files: list):
@@ -21,7 +21,7 @@ def create_embedding_from_text_content(text_content):
     embeddings = []
     for cont in text_content:
         text = cont['content']
-        embedding = get_embedding([text])[0]
+        embedding = LightTextEmbedding.get_embedding(text)
         cont['embedding'] = embedding
         embeddings.append(cont)
     return embeddings

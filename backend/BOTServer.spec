@@ -4,9 +4,9 @@
 a = Analysis(
     ['run_api.py'],
     pathex=[],
-    binaries=[],
+    binaries=[('venv/Lib/site-packages/gpt4all/llmodel_DO_NOT_MODIFY/build/*', 'gpt4all/llmodel_DO_NOT_MODIFY/build')],
     datas=[('app', 'app/'), ('settings.py', '.'), ('.env', '.')],
-    hiddenimports=['pandas', 'faiss-cpu', 'pdfplumber', 'logging.handlers', 'dotenv', 'opencv-python', 'flask', 'python-docx', 'tqdm', 'uuid', 'gpt4all', 'waitress', 'nomic'],
+    hiddenimports=['pandas', 'faiss', 'pdfplumber', 'logging.handlers', 'dotenv', 'flask', 'docx', 'tqdm', 'uuid', 'gpt4all', 'waitress', 'light_embed'],
     hookspath=[],
     hooksconfig={},
     runtime_hooks=[],

@@ -17,6 +17,7 @@ blueprint_v1 = Blueprint(
 
 # Init cache for bot
 cache_bot = {}
+logger.info(f'Chatbot: {chatbot}')
 
 
 @blueprint_v1.route('/conversation', methods=['POST'])
@@ -134,7 +135,7 @@ def create_bot():
         cache_bot[bot_id] = bot
 
     logger.info(f'finished creating bot')
-    data_response = {'success': uploaded_files, 'error': errors}
+    data_response = ""
     response = MyResponse(message="created BOT", status_code=200, data=data_response)
     return response.get_response()
 
@@ -145,4 +146,15 @@ def get_all_created_bots():
     bot_home_df, bot_home_path = get_all_bots()
     all_data = list(bot_home_df[['bot_id', 'bot_name']].values.tolist())
     response = MyResponse(status_code=200, data=all_data, message=f'')
+    return response.get_response()
+
+
+@blueprint_v1.route('/self-kill', methods=['GET'])
+def self_kill():
+    os._exit(0)
+
+
+@blueprint_v1.route('/health-check', methods=['GET'])
+def health_check():
+    response = MyResponse(status_code=200, data='', message=f'API is running...')
     return response.get_response()

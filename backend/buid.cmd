@@ -1,7 +1,7 @@
 @echo off
 
 REM Start build app
-pyinstaller --noconfirm --onefile --console --icon=app/resource/app.ico --name BOTServer --add-data "app;app/" --add-data "settings.py;." --add-data ".env;." --hidden-import "pandas" --hidden-import faiss-cpu --hidden-import pdfplumber --hidden-import "logging.handlers" --hidden-import "dotenv" --hidden-import "opencv-python" --hidden-import "flask" --hidden-import "python-docx" --hidden-import "tqdm" --hidden-import "uuid" --hidden-import "gpt4all" --hidden-import "waitress" --hidden-import "nomic" run_api.py
+pyinstaller --noconfirm --onefile --console --icon=app/resource/app.ico --name BOTServer --add-data "app;app/" --add-data "settings.py;." --add-data ".env;." --hidden-import "pandas" --hidden-import "faiss" --hidden-import "pdfplumber" --hidden-import "logging.handlers" --hidden-import "dotenv" --hidden-import "flask" --hidden-import "docx" --hidden-import "tqdm" --hidden-import "uuid" --hidden-import "gpt4all" --hidden-import "waitress" --hidden-import "light_embed" --add-binary "venv/Lib/site-packages/gpt4all/llmodel_DO_NOT_MODIFY/build/*;gpt4all/llmodel_DO_NOT_MODIFY/build" run_api.py
 
 REM Copy .ev file
 echo Copying .env to dist folder
@@ -16,5 +16,3 @@ if exist "%DIST_FOLDER%" (
 ) else (
     echo Folder %DIST_FOLDER% not existed!
 )
-
-pause

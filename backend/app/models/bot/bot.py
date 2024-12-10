@@ -1,5 +1,5 @@
+from app.models.embeddings.text_light_embed import LightTextEmbedding
 from settings import DEFAULT_PROMPT
-from nomic import embed
 import numpy as np
 import faiss
 
@@ -27,8 +27,8 @@ class Bot:
 
 
     def get_embedding(self, text):
-        embeddings = embed.text([text], inference_mode="local")['embeddings']
-        return np.asarray(embeddings[0]).reshape(1, len(embeddings[0]))
+        embeddings = LightTextEmbedding.get_embedding(text)
+        return np.asarray(embeddings).reshape(1, len(embeddings))
 
 
     def create_prompt(self, user_question):
