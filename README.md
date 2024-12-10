@@ -43,7 +43,7 @@
 ---
 
 ## Demo
-![Get demo application here:](https://drive.google.com/file/d/1luetX_6J1nObZT9NF6A3e07zVEturqV5/view?usp=sharing)
+[Get demo application here!](https://drive.google.com/file/d/1luetX_6J1nObZT9NF6A3e07zVEturqV5/view?usp=sharing)
 ![Demo GUI](/demo/demoapp.gif)
 
 ---
